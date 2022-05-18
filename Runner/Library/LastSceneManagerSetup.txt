@@ -1,0 +1,5 @@
+sceneSetups:
+- path: Assets/Bolt 2D DinoRun VE1/Demo/Demo.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
