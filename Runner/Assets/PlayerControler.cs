@@ -19,7 +19,7 @@ public class PlayerControler : MonoBehaviour
 
     private void Start()
     {
-        
+        Time.timeScale = 1;
     }
 
 
@@ -33,6 +33,7 @@ public class PlayerControler : MonoBehaviour
         if (liveScore == 0)
         {
             gameOver.SetActive(true);
+            Time.timeScale = 0;
         }
 
         //scoreText.text = ((int)(groundCheck.position.x / 1)).ToString();
