@@ -10,7 +10,8 @@ public class PlayerControler : MonoBehaviour
     public GameObject gameOver;
     public Text live;
     public int liveScore = 3;
-    [SerializeField] private Text scoreText;
+    public float Score = 0;
+    public Text SText;
     public Transform groundCheck;
     public LayerMask groundMask;
     private bool ground = false;
@@ -20,6 +21,7 @@ public class PlayerControler : MonoBehaviour
     {
         
     }
+
 
     private void Update()
     {
@@ -33,7 +35,14 @@ public class PlayerControler : MonoBehaviour
             gameOver.SetActive(true);
         }
 
-        scoreText.text = ((int)(groundCheck.position.x / 1)).ToString();
+        //scoreText.text = ((int)(groundCheck.position.x / 1)).ToString();
+
+        Score += Time.deltaTime;
+        if (liveScore != 0)
+        {
+            SText.text = Score.ToString();
+            SText.text = Mathf.Round(Score).ToString();
+        }
     }
 
     public void Jump()
@@ -45,8 +54,11 @@ public class PlayerControler : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            liveScore--;
-            live.text=liveScore.ToString();
+            if (liveScore != 0)
+            {
+                liveScore--;
+                live.text=liveScore.ToString();
+            }
         }
     }
     public void Restart()
