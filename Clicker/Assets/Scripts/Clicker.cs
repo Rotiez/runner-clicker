@@ -40,6 +40,13 @@ public class Clicker : MonoBehaviour
 
     //Выбор планеты
     public int ChoosePlanet = 1;
+
+    //Sprite button change
+    [SerializeField] private Sprite[] buttonSprites;
+    [SerializeField] private Image TerrainButton;
+    [SerializeField] private Image LavaButton;
+    [SerializeField] private Image IceButton;
+    [SerializeField] private Image BarenButton;
     
     private ClickObj[] clickTextPool = new ClickObj[15];
     
@@ -51,9 +58,9 @@ public class Clicker : MonoBehaviour
         click = PlayerPrefs.GetInt("Click+",click);
         upgrade = PlayerPrefs.GetInt("upgrade+",upgrade);
         upgrade1 = PlayerPrefs.GetInt("upgrade1+",upgrade1);
-        PlayerPrefs.GetInt("Lava+",Lava);
-        PlayerPrefs.GetInt("Ice+",Ice);
-        PlayerPrefs.GetInt("Baren+",Baren);
+        Lava = PlayerPrefs.GetInt("Lava+",Lava);
+        Ice = PlayerPrefs.GetInt("Ice+",Ice);
+        Baren = PlayerPrefs.GetInt("Baren+",Baren);
 
         for (int i = 0; i < clickTextPool.Length; i++)
         {
@@ -94,24 +101,29 @@ public class Clicker : MonoBehaviour
             if (ChoosePlanet == 1)
             {
                 TerrainText.text = "Selected";
+                TerrainButton.sprite = buttonSprites[1];
             }
             else
             {
                 TerrainText.text = "Owned";
+                TerrainButton.sprite = buttonSprites[0];
             }   
         }
         //////////////
 
         if (Lava == 1)
-        {
+        {   
             if (ChoosePlanet == 2)
             {
                 LavaText.text = "Selected";
+                LavaButton.sprite = buttonSprites[1];
             }
             else
             {
                 LavaText.text = "Owned";
+                LavaButton.sprite = buttonSprites[0];
             }
+            LavaLock.SetActive(false);
         }
     
         ///////////////
@@ -120,11 +132,14 @@ public class Clicker : MonoBehaviour
             if (ChoosePlanet == 3)
             {
                 IceText.text = "Selected";
+                IceButton.sprite = buttonSprites[1];
             }
             else
             {
                 IceText.text = "Owned";
+                IceButton.sprite = buttonSprites[0];
             }
+            IceLock.SetActive(false);
         }
         ////////////////
 
@@ -133,11 +148,14 @@ public class Clicker : MonoBehaviour
             if (ChoosePlanet == 4)
             {
                 BarenText.text = "Selected";
+                BarenButton.sprite = buttonSprites[1];
             }
             else
             {
                 BarenText.text = "Owned";
+                BarenButton.sprite = buttonSprites[0];
             }
+            BarenLock.SetActive(false);
         }
     }
 
@@ -176,23 +194,13 @@ public class Clicker : MonoBehaviour
     public void Reset()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+    public void MainMenuButton()
+    {
         SceneManager.LoadScene(0);
     }
 
-    public void OnClickStart()
-    {
-        SceneManager.LoadScene(1);
-    }
-    
-    public void OnClickMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
-    
-    public void OnClickShop()
-    {
-        SceneManager.LoadScene(2);
-    }
 
 /////////////////////////////////////////////////////  
     //Панель Upgrade
