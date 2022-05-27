@@ -11,7 +11,7 @@ public class ClickObj : MonoBehaviour
    private void Update()
    {
       if (!move) return;
-      transform.Translate(randomVector * Time.deltaTime);
+      transform.Translate(randomVector * Time.deltaTime * 100);
    }
    
    public void StartMotion(int ScoreIncrease)

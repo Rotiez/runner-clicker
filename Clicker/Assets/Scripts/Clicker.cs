@@ -8,7 +8,7 @@ public class Clicker : MonoBehaviour
 {
     
     
-    public int score;
+    public static int score;
     public Text clicktext;
     public Text ScoreShop;
     public Text ScoreShopplanet;
@@ -16,7 +16,7 @@ public class Clicker : MonoBehaviour
     private int autoclick = 0;
        
     private int upgrade = 50;
-    private int upgrade1 = 100;
+    private int upgrade1 = 50;
     
     public Text upgradetext;
     public Text autoclicktext;
@@ -51,7 +51,8 @@ public class Clicker : MonoBehaviour
     private ClickObj[] clickTextPool = new ClickObj[15];
     
     void Start()
-    {
+    {   
+        Time.timeScale = 1;
         score = 0;
         score = PlayerPrefs.GetInt("Score+", score);
         autoclick = PlayerPrefs.GetInt("autoclick+",autoclick);
@@ -175,9 +176,9 @@ public class Clicker : MonoBehaviour
     {
         if (score >= upgrade1 && upgrade1 <= 25600)
         {
-            autoclick += 1;
+            autoclick += 5;
             score -= upgrade1;
-            upgrade1 *= 4;
+            upgrade1 *= 2;
         }
         PlayerPrefs.SetInt("upgrade1+",upgrade1);
         PlayerPrefs.SetInt("Click+",click);

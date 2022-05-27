@@ -38,12 +38,14 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BGScroller.cs" />
      <Compile Include="Assets\Scripts\PanOpener.cs" />
+     <Compile Include="Assets\Scripts\SoundEffectsButtons.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
+     <Compile Include="Assets\Scripts\Runner\PlayerControler.cs" />
      <Compile Include="Assets\Scripts\Clicker.cs" />
+     <Compile Include="Assets\Scripts\Runner\PlayerScript.cs" />
      <Compile Include="Assets\Scripts\ClickTarget.cs" />
      <Compile Include="Assets\Scripts\ClickObj.cs" />
-     <Compile Include="Assets\Scripts\Runner\PlayerScript.cs" />
-     <Compile Include="Assets\Scripts\Runner\PlayerControler.cs" />
+     <Compile Include="Assets\Scripts\Runner\SceneScroller.cs" />
     <Reference Include="UnityEngine">
         <HintPath>F:\Unity\2020.3.30f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

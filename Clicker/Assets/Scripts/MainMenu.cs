@@ -7,14 +7,16 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     
+    public Text scoreText;
+
     void Start()
     {
-        
+        Time.timeScale = 1;
     }
 
     void Update()
     {
-        
+       scoreText.text = Clicker.score.ToString();
     }
 
     public void OnClickClicker()

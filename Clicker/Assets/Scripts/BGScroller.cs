@@ -13,11 +13,11 @@ public class BGScroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(-50 * Time.deltaTime, 0);
+        transform.position += new Vector3(-100 * Time.deltaTime, 0);
 
-        if(transform.position.x<-1928)
+        if(transform.position.x<-5891)
         {
-            transform.position = new Vector3(4990f, transform.position.y);
+            transform.position = new Vector3(15429f, transform.position.y);
         }
     }
 }

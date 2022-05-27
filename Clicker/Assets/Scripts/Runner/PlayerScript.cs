@@ -1,40 +1,70 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
-    public float JumpForce;
+    /// Score points
+    public Text scoreText;
 
-    [SerializeField] bool isGrounded = false;
+    public int scoreRun;
+    public float decimalScoreRun;
+    public int pointsPerSecond;
 
-    Rigidbody2D RB;
+    public GameObject gameOver;
 
-    
-    private void Awake()
-    {
-        RB = GetComponent<Rigidbody2D>();
+    /// Ground
+    // public Transform groundCheck;
+    // public LayerMask groundMask;
+    // private bool ground = false;
+    // private float groundRadius = 0.5f;
+
+    public Rigidbody2D rb;
+
+    void Start()
+    {   
+        Time.timeScale = 1;
+        scoreRun = 0;
+
     }
-
     
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        /// Points counting
+        decimalScoreRun += pointsPerSecond * Time.deltaTime;
+        //scoreRun = Mathf.RoundToInt(decimalScoreRun);
+        scoreText.text = scoreRun.ToString();
+        PlayerPrefs.SetInt("Score+", Clicker.score);
+        
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(isGrounded == true)
-            {
-                RB.AddForce(Vector2.up * JumpForce);
-                isGrounded = false;
-            }
+            Jump();
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void Jump()
     {
-        if(collision.gameObject.CompareTag("ground"))
-        {
-            if(isGrounded == false)
-            {
-                isGrounded = true;
-            }
-        }
+        //rb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+        
+        transform.position = new Vector2 (220,1200);
+        Clicker.score += 10;
+        scoreRun += 10;
+    
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {   
+        PlayerPrefs.SetInt("Score+", Clicker.score);
+        gameOver.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void Restart()
+    {   
+        Clicker.score += scoreRun;
+        SceneManager.LoadScene(2);
+    }
+
 }
